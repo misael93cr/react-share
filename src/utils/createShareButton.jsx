@@ -111,7 +111,7 @@ class ShareButton extends PureComponent {
 
     const link = this.link();
 
-    const clickHandler = openWindow ? () => this.openWindow(link) : () => onClick(link);
+    const clickHandler = openWindow ? () => this.openWindow() : () => onClick(link);
 
     if (beforeOnClick) {
       const returnVal = beforeOnClick();
