@@ -58,6 +58,7 @@ function windowOpen(url, { height = 400, width = 550, ...configRest }, onClose) 
   return shareDialog;
 }
 
+let globalURL = '';
 class ShareButton extends PureComponent {
   static propTypes = {
     additionalProps: PropTypes.object,
@@ -132,6 +133,7 @@ class ShareButton extends PureComponent {
   }
 
   openWindow = (link) => {
+    const latestLink = _this.link();
     const {
       windowPosition,
       onShareWindowClose,
@@ -148,12 +150,12 @@ class ShareButton extends PureComponent {
       ),
     };
 
-    windowOpen(link, windowConfig, onShareWindowClose);
+    windowOpen(latestLink, windowConfig, onShareWindowClose);
   }
 
   link() {
     const { url, opts, networkLink } = this.props;
-    return networkLink(url, opts);
+    return networkLink(globalURL, opts);
   }
 
   render() {
@@ -168,6 +170,7 @@ class ShareButton extends PureComponent {
       style,
       tabIndex,
     } = this.props;
+    globalURL = this.props.url;
 
     const classes = cx(
       'SocialMediaShareButton',
