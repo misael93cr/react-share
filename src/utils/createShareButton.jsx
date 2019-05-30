@@ -132,8 +132,8 @@ class ShareButton extends PureComponent {
     }
   }
 
-  openWindow = (link) => {
-    const latestLink = _this.link();
+  openWindow = () => {
+    const latestLink = this.link();
     const {
       windowPosition,
       onShareWindowClose,
@@ -154,7 +154,7 @@ class ShareButton extends PureComponent {
   }
 
   link() {
-    const { url, opts, networkLink } = this.props;
+    const { opts, networkLink } = this.props;
     return networkLink(globalURL, opts);
   }
 
